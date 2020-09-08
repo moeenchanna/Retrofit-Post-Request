@@ -20,42 +20,66 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-  //Post example
+    //Post example
+    private static final String TAG = "MainActivity";
 
     private EditText mSetTitle;
     private EditText mSetBody;
     private Button mPostButton;
     private TextView mResponse;
     private APIService mApiService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mSetTitle=findViewById(R.id.editTextTitle);
-        mSetBody=findViewById(R.id.editTextBody);
-        mPostButton=findViewById(R.id.buttonPostData);
-        mResponse=findViewById(R.id.textViewResponse);
+        mSetTitle = findViewById(R.id.editTextTitle);
+        mSetBody = findViewById(R.id.editTextBody);
+        mPostButton = findViewById(R.id.buttonPostData);
+        mResponse = findViewById(R.id.textViewResponse);
 
-        mApiService=ApiUtils.getApiService();
+        mApiService = ApiUtils.getApiService();
     }
 
     public void postData(View view) {
-        String title=mSetTitle.getText().toString().trim();
-        String body=mSetBody.getText().toString().trim();
-        sendPost(title,body);
+        String title = mSetTitle.getText().toString().trim();
+        String body = mSetBody.getText().toString().trim();
+        Log.d(TAG, "postData: ");
+        sendPost(title, body);
     }
-    public void sendPost(String title,String body){
-        mApiService.saveData(title,body,1).enqueue(new Callback<Post>() {
+
+    public void sendPost(String title, String body) {
+        mApiService.saveData("+923359298484").enqueue(new Callback<Post>() {
             @Override
             public void onResponse(Call<Post> call, Response<Post> response) {
-                mResponse.setText(response.body().getTitle()+" ".concat(response.body().getBody()+" ").concat(response.body().getId().toString()+" ").concat(response.body().getUserId().toString())+" ");
-                Toast.makeText(MainActivity.this,"Post işlemi tamamlandı.",Toast.LENGTH_SHORT).show();
+
+                if (response.isSuccessful()) {
+
+                    Post post = response.body();
+
+                    if (post != null) {
+
+                        Log.d(TAG, "onResponse: " + response.body().toString());
+                        Log.d(TAG, "onResponse: " + response.body().getMessage());
+                        Log.d(TAG, "onResponse: " + response.body().getStatus());
+                        Log.d(TAG, "onResponse: " + response.body().getData().getOtp());
+                        //mResponse.setText(response.body().getMessage()+" ".concat(response.body().getStatus()+" ").concat(response.body().getData().getOtp()+""));
+                        Toast.makeText(MainActivity.this, "post operation is completed.", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(MainActivity.this, "post operation is completed.", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                }
+
+
             }
 
             @Override
             public void onFailure(Call<Post> call, Throwable t) {
-                Toast.makeText(MainActivity.this,"Başarısız",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Unsuccessful", Toast.LENGTH_SHORT).show();
             }
         });
     }

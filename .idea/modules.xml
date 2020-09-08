@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Retrofit-Post-Example-Android.iml" filepath="$PROJECT_DIR$/.idea/modules/Retrofit-Post-Example-Android.iml" group="Retrofit-Post-Example-Android" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Retrofit-Post-Example-Android-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Retrofit-Post-Example-Android-app.iml" group="Retrofit-Post-Example-Android/app" />
       <module fileurl="file://$PROJECT_DIR$/RetrofitExample.iml" filepath="$PROJECT_DIR$/RetrofitExample.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

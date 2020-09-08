@@ -3,49 +3,51 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Post {
-    @SerializedName("title")
+    @SerializedName("message")
     @Expose
-    private String title;
-    @SerializedName("body")
+    private String message;
+    @SerializedName("data")
     @Expose
-    private String body;
-    @SerializedName("userId")
+    private Data data;
+    @SerializedName("status")
     @Expose
-    private Integer userId;
-    @SerializedName("id")
-    @Expose
-    private Integer id;
+    private Integer status;
 
-    public String getTitle() {
-        return title;
+    public String getMessage() {
+        return message;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public String getBody() {
-        return body;
+    public Data getData() {
+        return data;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public void setData(Data data) {
+        this.data = data;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
-    public Integer getId() {
-        return id;
-    }
+    public class Data {
+        @SerializedName("otp")
+        @Expose
+        private Integer otp;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+        public Integer getOtp() {
+            return otp;
+        }
 
+        public void setOtp(Integer otp) {
+            this.otp = otp;
+        }
+    }
 }
